@@ -1,0 +1,123 @@
+body {
+    font: 200 1em 'Helvetica Neue', 'Segoe UI', 'Droid Sans', 'Helvetica';
+    padding: 0;
+    margin: 0;
+}
+
+input, select, textarea, button, .button {
+    font: 200 1em 'Helvetica Neue', 'Segoe UI', 'Droid Sans', 'Helvetica';
+    outline: none;
+    border: 1px solid #eee;
+    padding: 0.35em 0.5em;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 0.35em 0.5em;
+}
+
+.panel {
+    padding: 1em;
+    background-color: #eee;
+    margin: 1em;
+}
+
+button, input[type="submit"] {
+    border-radius: 0.3em;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #777;
+    color: white;
+    transition: all 150ms ease;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+html, body{
+    height:100%;
+}
+div.fullpage{
+    height:100%;
+}
+div.left-side{
+    height:100%;
+    width: 30%;
+    border-right: 1px solid black;
+    box-sizing: border-box;
+    float:left;
+}
+div.right-side{
+    height:100%;
+    width: 70%;
+    float:left;
+}
+button#w1, button#w2{
+    width: 80%;
+}
+div.widget1, div.widget2{
+    height: 200px;
+    width: 300px;
+    float:left;
+    margin: 1em;
+
+}
+
+div.widget{
+    height: 200px;
+    width: 300px;
+    border:1px solid black;
+    background-color: gray;
+
+}
+div.header{
+    height: 20%;
+    width: 100%;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    font-weight: 600;
+    font-size: 20px;
+    line-height:21px;
+}
+div.listeners{
+    height: 20%;
+    width: 100%;
+    font-weight: 600;
+    font-size: 20px;
+    line-height:21px;
+}
+div.info{
+    height: 80%;
+    width: 100%;
+
+}
+div.heading, div.play{
+    margin-left:1em;
+    margin-top:0.5em;
+    display:inline-block;
+
+
+
+}div.play{
+     cursor: pointer;
+
+ }
+span.close, div.pause{
+    float:right;
+    margin-right:1em;
+    margin-top:0.5em;
+    cursor: pointer;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+div.rand{
+    width: 100%;
+    height:70%;
+    text-align: center;
+    font-size:89px;
+    line-height: 90px;
+    font-weight: 700;
+}

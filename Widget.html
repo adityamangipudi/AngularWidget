@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="base.css" type="text/css"/>
+    <title>Angular</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp', [])
+                .controller('MyController', function($scope,$compile,  $http){
+                    $scope.message = 'Hello World from AngularJS';
+                    $scope.widget1s=[];
+                    $scope.create= function(widget){
+                        var elem;
+                        if(widget === 'widget1'){
+                            $scope.w1=elem= createElement('div', document.querySelector('div.right-side'), widget,'');
+                            //elem.querySelector('.rand').innerHTML = "" + Math.floor((Math.random() * 100) + 1);
+                            if(elem){
+                                addListener(elem, 'W1');
+                            }
+                        }if (widget ==='widget2'){
+                            $scope.w2=elem= createElement('div', document.querySelector('div.right-side'), widget,'');
+                            //elem.querySelector('.rand').innerHTML = "" + Math.floor((Math.random() * 100) + 1);
+                           if(elem){
+
+                               addListener(elem, 'W2');
+                           }
+                        }
+                    }
+                }).directive('widget1', function($compile,$q, $http){
+                    return {
+                        restrict: 'AC',
+                        templateUrl:'_widget1.html',
+                        link:function(scope, element, attrs){
+                            console.log('here', element[0]);
+                            scope.$watch('w1', function(newv, old){
+                                console.log('in here',newv);
+                                $compile(newv);
+                            });
+                        }
+                    }
+                }).directive('widget2', function($compile,$q, $http){
+                    return {
+                        restrict: 'AC',
+                        templateUrl:'_widget2.html',
+                        link:function(scope, element, attrs){
+                            console.log('here', element[0]);
+                            scope.$watch('w2', function(newv, old){
+                                console.log('in here',newv);
+                                $compile(newv);
+                            });
+                        }
+                    }
+                });
+        function createElement(elementType, parent, className, innerHTML, attr, val){
+                    var element = document.createElement(elementType);
+                    if(parent) parent.appendChild(element);
+                    if(className) element.className=className;
+                    if(innerHTML) element.innerHTML=innerHTML;
+                    if(attr) element.setAttribute(attr,val);
+                    return element;
+
+        }
+        function addListener(elem, type){
+            console.log('el', elem);
+            if(type==='W1'){
+                var isRunning= true;
+                var timer = setInterval(function () {
+                    elem.querySelector('.rand').innerHTML = "" + Math.floor((Math.random() * 100) + 1);
+                }, 1000);
+                console.log('pushed')
+                elem.addEventListener('click', function(e){
+                    console.log('click')
+                    if(e.target.classList.contains('close')){
+                        elem.parentNode.removeChild(elem);
+                    }
+                    if(e.target.classList.contains('pause')){
+
+                        isRunning = false;
+                        clearInterval(timer);
+                        console.log(isRunning)
+
+                    }
+                    if(e.target.classList.contains('play') && !isRunning){
+                        console.log('in play', isRunning)
+                        isRunning=true;
+                        timer = setInterval(function () {
+                            elem.querySelector('.rand').innerHTML = "" + Math.floor((Math.random() * 100) + 1);
+                        }, 1000);
+                    }
+                });
+            }
+            if(type==='W2'){
+                var isRunning= false;
+                elem.addEventListener('click', function(e){
+                    console.log('click')
+                    if(e.target.classList.contains('close')){
+                        elem.parentNode.removeChild(elem);
+                    }
+                    if(e.target.classList.contains('pause')){
+                        isRunning = false;
+                        clearInterval(timer);
+                        console.log(isRunning)
+                    }
+                    if(e.target.classList.contains('play') && !isRunning){
+                        console.log('in play', isRunning)
+                        isRunning=true;
+                        timer = setInterval(function () {
+                            elem.querySelector('.rand').innerHTML = "-" + Math.floor((Math.random() * 100) + 1);
+                        }, 1000);
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+<div ng-controller="MyController" class = "fullpage">
+    <div class="left-side">
+        <button id="w1" ng-click="create('widget1')">W1</button>
+        <button id="w2" ng-click="create('widget2')">W2</button>
+    </div>
+    <div class="right-side">
+
+    <div widget1 style="display: none;"></div>
+    <div widget2 style="display: none;"></div>
+
+
+    </div>
+</div>
+
+</body>
+</html>
